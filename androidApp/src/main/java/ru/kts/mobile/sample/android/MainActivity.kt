@@ -3,38 +3,32 @@ package ru.kts.mobile.sample.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import ru.kts.mobile.sample.Greeting
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.kts.mobile.sample.android.ui.MainScreen
+import ru.kts.mobile.sample.di.initKoin
+import ru.kts.mobile.sample.presentation.MainViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel by viewModel<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MyApplicationTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    GreetingView(Greeting().greet())
-                }
-            }
+
+        initKoin {
+            androidContext(applicationContext)
         }
-    }
-}
 
-@Composable
-fun GreetingView(text: String) {
-    Text(text = text)
-}
+        setContent {
+            val state by viewModel.state.collectAsState()
 
-@Preview
-@Composable
-fun DefaultPreview() {
-    MyApplicationTheme {
-        GreetingView("Hello, Android!")
+            MainScreen(
+                state = state,
+                onLoadClick = viewModel::load,
+            )
+        }
     }
 }

@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "ru.kts.mobile.sample.android"
-    compileSdk = 33
+    compileSdk = Versions.Android.compileSdk
     defaultConfig {
-        applicationId = "ru.kts.mobile.sample.android"
-        minSdk = 21
-        targetSdk = 33
+        applicationId = "ru.kts.mobile.sample"
+        minSdk =  Versions.Android.minSdk
+        targetSdk =  Versions.Android.targetSdk
         versionCode = 1
         versionName = "1.0"
     }
@@ -17,7 +17,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
+        kotlinCompilerExtensionVersion = Deps.AndroidX.Compose.compilerVersion
     }
     packagingOptions {
         resources {
@@ -40,10 +40,13 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.compose.ui:ui:1.3.1")
-    implementation("androidx.compose.ui:ui-tooling:1.3.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.3.1")
-    implementation("androidx.compose.foundation:foundation:1.3.1")
-    implementation("androidx.compose.material:material:1.3.1")
-    implementation("androidx.activity:activity-compose:1.6.1")
+
+    implementation(Deps.AndroidX.Compose.activity)
+    implementation(Deps.AndroidX.Compose.foundation)
+    implementation(Deps.AndroidX.Compose.material)
+    implementation(Deps.AndroidX.Compose.ui)
+    implementation(Deps.AndroidX.Compose.Tooling.preview)
+    implementation(Deps.AndroidX.Compose.Tooling.ui)
+    implementation(Deps.AndroidX.Compose.Tooling.ui)
+    implementation(Deps.Koin.android)
 }

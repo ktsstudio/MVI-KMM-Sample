@@ -1,8 +1,26 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("io.github.skeptick.libres")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
+
+libres {
+    generatedClassName = "KImages"
+    generateNamedArguments = true
+    baseLocaleLanguageCode = "ru"
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "org.skfl.res"
+    iosBaseLocalizationRegion = "ru"
+    disableStaticFrameworkWarning = true
+}
+
+version = Versions.Ios.podVersion
 
 kotlin {
     android {
@@ -12,56 +30,69 @@ kotlin {
             }
         }
     }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+
+    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
+        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true) ::iosArm64 else ::iosX64
+
+    iosTarget("ios") {}
 
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
-        version = "1.0"
-        ios.deploymentTarget = "14.1"
+        ios.deploymentTarget = Versions.Ios.deploymentTarget
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            isStatic = true
+
+            export(Deps.KmmColors.core)
+            export(Deps.KmmResources.core)
+            export(Deps.KmmViewModel.cFlow)
+            export(Deps.KmmViewModel.core)
         }
     }
-    
+
     sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
+        all { languageSettings.optIn("kotlin.RequiresOptIn") }
+
+        commonMain {
             dependencies {
-                implementation(kotlin("test"))
+                api(Deps.KmmResources.core)
+                api(Deps.KmmViewModel.core)
+                api(Deps.KmmViewModel.cFlow)
+
+                implementation(Deps.Koin.core)
+                implementation(Deps.Kotlin.Coroutines.core)
+                implementation(Deps.Logging.napier)
+                implementation(Deps.MVI.core)
+                implementation(Deps.MVI.coroutines)
+                implementation(Deps.MVI.logging)
+                implementation(Deps.MVI.main)
             }
         }
-        val androidMain by getting
-        val androidUnitTest by getting
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
+
+        val androidMain by getting {
+            dependencies {
+                implementation(Deps.KmmResources.android)
+            }
         }
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
-        }
+
+        val iosMain by getting {}
     }
 }
-
 android {
     namespace = "ru.kts.mobile.sample"
-    compileSdk = 33
+    compileSdk = Versions.Android.compileSdk
+    sourceSets["main"].apply {
+        manifest.srcFile("src/androidMain/AndroidManifest.xml")
+
+        res.srcDirs(
+            File(buildDir, "generated/moko/androidMain/res"),
+            File(buildDir, "generated/libres/android/resources"),
+        )
+    }
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = Versions.Android.minSdk
+        targetSdk = Versions.Android.targetSdk
     }
 }

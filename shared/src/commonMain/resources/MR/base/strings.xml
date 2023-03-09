@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+
+    <string name="app_title">MVI KMM Sample</string>
+    <string name="button_load_title">Загрузить</string>
+    <string name="button_reload_title">Перезагрузить</string>
+    <string name="name_title">Имя</string>
+    <string name="surname_title">Фамилия</string>
+    <string name="birthday_title">Дата рождения</string>
+    <string name="gender_title">Пол</string>
+    <string name="device_title">Устройство</string>
+    <string name="error_title">Произошла ошибка</string>
+
+</resources>

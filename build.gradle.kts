@@ -1,9 +1,25 @@
-plugins {
-    //trick: for the same plugin versions in all sub-modules
-    id("com.android.application").version("7.4.2").apply(false)
-    id("com.android.library").version("7.4.2").apply(false)
-    kotlin("android").version("1.8.0").apply(false)
-    kotlin("multiplatform").version("1.8.0").apply(false)
+buildscript {
+
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        google()
+    }
+
+    dependencies {
+        classpath(Deps.Kotlin.gradlePlugin)
+        classpath(Deps.Android.gradlePlugin)
+        classpath(Deps.KmmResources.gradlePlugin)
+        classpath(Deps.KmmImages.gradlePlugin)
+    }
+}
+
+allprojects {
+
+    repositories {
+        mavenCentral()
+        google()
+    }
 }
 
 tasks.register("clean", Delete::class) {

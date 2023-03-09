@@ -2,4 +2,8 @@ target 'iosApp' do
   use_frameworks!
   platform :ios, '14.1'
   pod 'shared', :path => '../shared'
+  pod 'Swinject'
+  pod 'SnapKit', '~> 5.6.0'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 end
