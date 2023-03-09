@@ -1,0 +1,10 @@
+allprojects {
+    it.afterEvaluate { project ->
+        if (project.pluginManager.hasPlugin("com.android.application") ||
+                project.pluginManager.hasPlugin("com.android.library")) {
+            project.android.lintOptions {
+                lintConfig file("$rootDir/linters/lint/config.xml")
+            }
+        }
+    }
+}
