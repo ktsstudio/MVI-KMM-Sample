@@ -2,8 +2,6 @@
 //  AppDelegate.swift
 //  iosApp
 //
-//  Created by Елена Качармина on 09.03.2023.
-//
 
 import UIKit
 

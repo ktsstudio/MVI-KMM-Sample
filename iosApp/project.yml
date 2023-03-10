@@ -1,0 +1,33 @@
+name: iosApp
+options:
+  type: application
+  platform: iOS
+  deploymentTarget:
+    iOS: 14.1
+  postGenCommand:
+    pod install;
+    bash ./scripts/OpenXcode.sh
+  groupSortPosition: top
+configFiles:
+  Debug: configs/Project-Debug.xcconfig
+  Release: configs/Project-Release.xcconfig
+settings:
+  DEVELOPMENT_TEAM: M2KCS745UW
+  EXCLUDED_ARCHS[sdk=iphonesimulator*]: arm64
+
+targets:
+  iosApp:
+    type: application
+    platform: iOS
+    settings:
+      TARGETED_DEVICE_FAMILY: 1
+    sources:
+      - path: App
+        excludes:
+          - "**/*.plist"
+    configFiles:
+      Debug: configs/iosApp-Debug.xcconfig
+      Release: configs/iosApp-Release.xcconfig
+    postBuildScripts:
+      - path: scripts/CopyMokoResourcesScript.sh
+        name: Copy Moko resources

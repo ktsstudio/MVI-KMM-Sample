@@ -1,6 +1,6 @@
 //
 //  MainViewController.swift
-//  SKFL-iOS
+//  iosApp
 //
 
 import UIKit

@@ -1,16 +1,22 @@
 PODS:
-  - RxCocoa (6.5.0):
-    - RxRelay (= 6.5.0)
-    - RxSwift (= 6.5.0)
-  - RxRelay (6.5.0):
-    - RxSwift (= 6.5.0)
-  - RxSwift (6.5.0)
+  - Differentiator (4.0.1)
+  - RxCocoa (5.1.3):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.3):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.3)
   - shared (1.0)
   - SnapKit (5.6.0)
-  - Swinject (2.8.3)
+  - Swinject (2.8.1)
 
 DEPENDENCIES:
   - RxCocoa
+  - RxDataSources
   - RxSwift
   - shared (from `../shared`)
   - SnapKit (~> 5.6.0)
@@ -18,7 +24,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Differentiator
     - RxCocoa
+    - RxDataSources
     - RxRelay
     - RxSwift
     - SnapKit
@@ -29,13 +37,15 @@ EXTERNAL SOURCES:
     :path: "../shared"
 
 SPEC CHECKSUMS:
-  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
-  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
-  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
+  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
   shared: d73db980a164f57a7308d847080cfe44d8731a09
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  Swinject: 893c9a543000ac2f10ee4cbaf0933c6992c935d5
+  Swinject: 97112918bd7e0785dc2df7036213f3c8cbba6586
 
-PODFILE CHECKSUM: 40681758daf843d85c9de8de6c689262f048641f
+PODFILE CHECKSUM: ac273a6be0aed8d376954506e918980836b61ac8
 
 COCOAPODS: 1.11.3

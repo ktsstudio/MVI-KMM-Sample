@@ -1,6 +1,6 @@
 //
 //  InfoView.swift
-//  SKFL-iOS
+//  iosApp
 //
 
 import UIKit

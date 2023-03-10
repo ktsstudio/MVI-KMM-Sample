@@ -1,0 +1,21 @@
+warning_threshold: 1
+disabled_rules:
+  - trailing_whitespace
+  - type_name
+opt_in_rules:
+  - empty_count
+  - private_outlet
+function_body_length:
+  warning: 70
+file_length:
+  warning: 450
+  error: 500
+identifier_name:
+    severity: warning
+    min_length: 3
+    excluded:
+        - id
+        - vc
+excluded:
+ - Pods
+

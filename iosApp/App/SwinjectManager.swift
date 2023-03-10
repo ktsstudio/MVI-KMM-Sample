@@ -1,6 +1,6 @@
 //
 //  SwinjectManager.swift
-//  SKFL-iOS
+//  iosApp
 //
 
 import Swinject

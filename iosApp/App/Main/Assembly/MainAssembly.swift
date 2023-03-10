@@ -1,6 +1,6 @@
 //
 //  MainAssembly.swift
-//  SKFL-iOS
+//  iosApp
 //
 
 import Foundation

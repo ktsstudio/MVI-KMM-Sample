@@ -1,6 +1,6 @@
 //
 //  MainView.swift
-//  SKFL-iOS
+//  iosApp
 //
 
 import UIKit

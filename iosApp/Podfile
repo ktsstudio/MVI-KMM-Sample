@@ -1,9 +1,33 @@
+platform :ios, '14.1'
+
+def base_pods
+  source 'https://cdn.cocoapods.org/'
+  pod 'Swinject'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
+  pod 'SnapKit', '~> 5.6.0'
+end
+
 target 'iosApp' do
   use_frameworks!
   platform :ios, '14.1'
   pod 'shared', :path => '../shared'
-  pod 'Swinject'
-  pod 'SnapKit', '~> 5.6.0'
-  pod 'RxSwift'
-  pod 'RxCocoa'
+  base_pods
+end
+
+post_install do |installer|
+ installer.pods_project.targets.each do |target|
+ if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+  target.build_configurations.each do |config|
+    config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+  end
+ end
+  target.build_configurations.each do |config|
+   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.1'
+  end
+ end
+ installer.pods_project.build_configurations.each do |config|
+   config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+ end
 end

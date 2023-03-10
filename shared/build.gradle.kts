@@ -15,7 +15,7 @@ libres {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "org.skfl.res"
+    multiplatformResourcesPackage = "ru.kts.mobile.sample"
     iosBaseLocalizationRegion = "ru"
     disableStaticFrameworkWarning = true
 }
