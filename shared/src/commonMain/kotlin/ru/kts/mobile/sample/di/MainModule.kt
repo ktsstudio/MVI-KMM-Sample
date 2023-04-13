@@ -8,10 +8,10 @@ import io.github.aakira.napier.Napier
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import ru.kts.mobile.sample.common.Mapper
-import ru.kts.mobile.sample.data.Repository
 import ru.kts.mobile.sample.data.RepositoryImpl
 import ru.kts.mobile.sample.domain.api.MainStore
 import ru.kts.mobile.sample.domain.impl.MainStoreFactory
+import ru.kts.mobile.sample.domain.impl.data.Repository
 import ru.kts.mobile.sample.presentation.MainViewModel
 import ru.kts.mobile.sample.presentation.mapper.MainUiStateMapper
 import ru.kts.mobile.sample.presentation.model.UiMainState

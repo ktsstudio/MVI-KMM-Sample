@@ -4,6 +4,7 @@ import kotlin.random.Random
 import kotlinx.coroutines.delay
 import ru.kts.mobile.sample.common.Response
 import ru.kts.mobile.sample.domain.api.model.UserInfo
+import ru.kts.mobile.sample.domain.impl.data.Repository
 
 internal class RepositoryImpl(
     // Data sources, mappers, etc.

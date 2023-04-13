@@ -2,9 +2,9 @@ package ru.kts.mobile.sample.domain.impl
 
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
-import ru.kts.mobile.sample.data.Repository
 import ru.kts.mobile.sample.domain.api.MainStore
 import ru.kts.mobile.sample.domain.api.model.UserInfo
+import ru.kts.mobile.sample.domain.impl.data.Repository
 
 internal class MainStoreFactory(
     private val storeFactory: StoreFactory,

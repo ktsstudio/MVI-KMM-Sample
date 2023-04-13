@@ -5,8 +5,8 @@ import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kts.mobile.sample.common.Response
-import ru.kts.mobile.sample.data.Repository
 import ru.kts.mobile.sample.domain.api.MainStore
+import ru.kts.mobile.sample.domain.impl.data.Repository
 
 internal abstract class BaseExecutor<in Intent : Any, in Action : Any, in State : Any, Message : Any, Label : Any>(
     mainContext: CoroutineContext = Dispatchers.Main,
