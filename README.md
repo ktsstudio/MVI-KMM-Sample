@@ -10,3 +10,5 @@ Shared code:
  
 Platform code:
  - Just ui: Compose on Android and UIKit on iOS
+
+Sample from the webinar [MVI to KMM](https://www.youtube.com/watch?v=g1TtM-bUmR4&ab_channel=kts)
