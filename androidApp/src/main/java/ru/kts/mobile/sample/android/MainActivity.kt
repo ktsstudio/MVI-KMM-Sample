@@ -17,11 +17,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        initKoin {
-            androidContext(applicationContext)
-        }
-
         setContent {
             val state by viewModel.state.collectAsState()
 

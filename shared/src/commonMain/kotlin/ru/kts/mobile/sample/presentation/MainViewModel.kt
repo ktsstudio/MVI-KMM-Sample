@@ -28,12 +28,14 @@ class MainViewModel(
 
     private val mutableState = MutableStateFlow(initialState).cMutableStateFlow()
 
-    private var binder: Binder? = null
+    private val binder: Binder
 
     init {
-        bindAndStart {
+        binder = bind(Dispatchers.Main.immediate) {
             store.states.map(stateMapper::map) bindTo (::acceptState)
         }
+        binder.start()
+
         load()
     }
 
@@ -43,16 +45,9 @@ class MainViewModel(
         mutableState.value = state
     }
 
-    private fun bindAndStart(
-        mainContext: CoroutineContext = Dispatchers.Main.immediate,
-        builder: BindingsBuilder.() -> Unit
-    ) = bind(mainContext, builder).run {
-        start()
-        binder = this
-    }
-
     override fun onCleared() {
         super.onCleared()
-        binder?.stop()
+        binder.stop()
+        store.dispose()
     }
 }
